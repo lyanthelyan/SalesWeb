@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\SalesWeb.Communication\SalesWeb.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\SalesWeb.Exception\SalesWeb.Exceptions.csproj" />
+    <ProjectReference Include="..\SalesWeb.Application\SalesWeb.Application.csproj" />
+    <ProjectReference Include="..\SalesWeb.Infrastructure\SalesWeb.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

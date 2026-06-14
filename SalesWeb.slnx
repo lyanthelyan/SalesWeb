@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Backend/">
+    <Project Path="src/Backend/SalesWeb.Application/SalesWeb.Application.csproj" />
+    <Project Path="src/Backend/SalesWeb.Domain/SalesWeb.Domain.csproj" />
+    <Project Path="src/Backend/SalesWeb.Infrastructure/SalesWeb.Infrastructure.csproj" />
+    <Project Path="src/Backend/SalesWeb.Web/SalesWeb.Web.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/SalesWeb.Communication/SalesWeb.Communication.csproj" />
+    <Project Path="src/Shared/SalesWeb.Exception/SalesWeb.Exceptions.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
