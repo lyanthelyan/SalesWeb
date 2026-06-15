@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SalesWeb.Domain.Entities.Department.Department>
+
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<h2>Departments</h2>
+
+<a asp-action="Create">Create New</a>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

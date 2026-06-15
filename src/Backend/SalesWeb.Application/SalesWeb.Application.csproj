@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="Mapster" Version="10.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Shared\SalesWeb.Communication\SalesWeb.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\SalesWeb.Exception\SalesWeb.Exceptions.csproj" />
     <ProjectReference Include="..\SalesWeb.Domain\SalesWeb.Domain.csproj" />
