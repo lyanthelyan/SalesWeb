@@ -1,4 +1,5 @@
-﻿using SalesWeb.Domain.Entities.Department;
+﻿using Microsoft.EntityFrameworkCore;
+using SalesWeb.Domain.Entities.Department;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Infrastructure.Persistence.Context;
 
@@ -21,10 +22,13 @@ public class DepartmentRepository : IDepartmentRepository
     public Department? GetById(Guid id)
     {
         return _context.Departments
+            .AsNoTracking()
             .FirstOrDefault(d => d.Id == id);
     }
     public List<Department> GetAll()
     {
-        return _context.Departments.ToList();
+        return _context.Departments
+            .AsNoTracking()
+            .ToList();
     }
 }

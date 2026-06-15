@@ -1,39 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SalesWeb.Application.UseCases.Department.GetAll;
 using SalesWeb.Application.UseCases.Department.Register;
 using SalesWeb.Communication.Requests;
-using SalesWeb.Domain.Repositories;
 
 public class DepartmentsController : Controller
 {
-    private readonly RegisterDepartmentUseCase _useCase;
-    private readonly IDepartmentRepository _repository;
+    private readonly IRegisterDepartmentUseCase _registerUseCase;
+    private readonly IGetAllDepartmentUseCase _getAllUseCase;
 
-    public DepartmentsController(RegisterDepartmentUseCase useCase, IDepartmentRepository repository)
+    public DepartmentsController(
+        IRegisterDepartmentUseCase registerUseCase,
+        IGetAllDepartmentUseCase getAllUseCase)
     {
-        _useCase = useCase;
-        _repository = repository;
+        _registerUseCase = registerUseCase;
+        _getAllUseCase = getAllUseCase;
     }
 
-    // GET: /Departments/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: /Departments/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(RequestRegisterDepartmentJson request)
     {
-        _useCase.Execute(request);
+        _registerUseCase.Execute(request);
 
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: /Departments
     public IActionResult Index()
     {
-        var departments = _repository.GetAll();
-        return View();
+        var departments = _getAllUseCase.Execute();
+
+        return View(departments);
     }
 }

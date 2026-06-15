@@ -2,13 +2,14 @@
 
 public class Department
 {
-    private string v;
-
-    public Department(string v)
+    public Department(string name)
     {
-        this.v = v;
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Department name cannot be empty.");
+        Name = name;
     }
 
     public Guid Id { get; private set; } = Guid.CreateVersion7();
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+
 }

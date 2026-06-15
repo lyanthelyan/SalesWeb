@@ -5,7 +5,7 @@ using SalesWeb.Exceptions.ExceptionBase;
 
 namespace SalesWeb.Application.UseCases.Department.Register;
 
-public class RegisterDepartmentUseCase
+public class RegisterDepartmentUseCase: IRegisterDepartmentUseCase
 {
     private readonly IDepartmentRepository _repository;
     public RegisterDepartmentUseCase(IDepartmentRepository repository)
@@ -16,7 +16,8 @@ public class RegisterDepartmentUseCase
     public void Execute(RequestRegisterDepartmentJson request)
     {
         ValidateAndThrownOnFailures(request);
-        var department = request.Adapt<Domain.Entities.Department.Department>();
+        var department = new Domain.Entities.Department.Department(request.Name);
+
         _repository.Add(department);
     }
 
