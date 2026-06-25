@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using SalesWeb.Application;
 using SalesWeb.Infrastructure;
+using SalesWeb.Infrastructure.Migrations;
 using SalesWeb.Web.Filters;
 using System.Globalization;
 
@@ -25,14 +26,14 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
         new AcceptLanguageHeaderRequestCultureProvider()
     };
 });
-
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
 
 var app = builder.Build();
-    
+await DatabaseMigration.MigrateDatabase(app.Services);
+
 
 var localizationOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(localizationOptions.Value);

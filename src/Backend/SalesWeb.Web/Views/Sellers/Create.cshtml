@@ -1,0 +1,53 @@
+﻿@model SalesWeb.Web.Models.SellerFormViewModel
+
+@{
+    ViewData["Title"] = "Create Seller";
+}
+
+<h2>Create Seller</h2>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label>Name</label>
+        <input asp-for="Seller.Name" />
+    </div>
+
+    <div>
+        <label>Email</label>
+        <input asp-for="Seller.Email" />
+    </div>
+
+    <div>
+        <label>Birth Date</label>
+        <input asp-for="Seller.BirthDate" type="date" />
+    </div>
+
+    <div>
+        <label>Base Salary</label>
+        <input asp-for="Seller.BaseSalary" />
+    </div>
+
+    <div>
+        <label>Department</label>
+
+        <select asp-for="Seller.DepartmentId">
+            <option value="">Select a department</option>
+
+            @foreach (var department in Model.Departments)
+            {
+                <option value="@department.Id">
+                    @department.Name
+                </option>
+            }
+
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Create</button>
+
+</form>
+
+<a asp-action="Index">Back</a>

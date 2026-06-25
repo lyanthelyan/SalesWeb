@@ -1,8 +1,9 @@
 ﻿using SalesWeb.Communication.Requests;
+using SalesWeb.Communication.Responses;
 
 namespace SalesWeb.Application.UseCases.Department.Register;
 
 public interface IRegisterDepartmentUseCase
 {
-    void Execute(RequestRegisterDepartmentJson request);
+    Task<ResponseRegisterDepartmentJson> Execute(RequestRegisterDepartmentJson request);
 }

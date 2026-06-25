@@ -70,6 +70,69 @@ namespace SalesWeb.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops! The base salary must be greater than zero..
+        /// </summary>
+        public static string VALIDATION_BASESALARY_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_BASESALARY_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! Birth date cannot be in the future..
+        /// </summary>
+        public static string VALIDATION_BIRTHDATE_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_BIRTHDATE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! The department is required..
+        /// </summary>
+        public static string VALIDATION_DEPARTMENT_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_DEPARTMENT_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! This email already exists..
+        /// </summary>
+        public static string VALIDATION_EMAIL_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("VALIDATION_EMAIL_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ops! Email is invalid..
+        /// </summary>
+        public static string VALIDATION_EMAIL_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! Email is required..
+        /// </summary>
+        public static string VALIDATION_EMAIL_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_EMAIL_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! This department already exists..
+        /// </summary>
+        public static string VALIDATION_NAME_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("VALIDATION_NAME_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oops! Name is required..
         /// </summary>
         public static string VALIDATION_NAME_REQUIRED {

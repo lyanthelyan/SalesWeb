@@ -1,6 +1,9 @@
 ﻿using Mapster;
 using SalesWeb.Communication.Requests;
+using SalesWeb.Communication.Responses;
+using SalesWeb.Domain.Extensions;
 using SalesWeb.Domain.Repositories;
+using SalesWeb.Exceptions;
 using SalesWeb.Exceptions.ExceptionBase;
 
 namespace SalesWeb.Application.UseCases.Department.Register;
@@ -8,23 +11,37 @@ namespace SalesWeb.Application.UseCases.Department.Register;
 public class RegisterDepartmentUseCase: IRegisterDepartmentUseCase
 {
     private readonly IDepartmentRepository _repository;
-    public RegisterDepartmentUseCase(IDepartmentRepository repository)
+    private readonly IUnitOfWork _unitOfWork;
+    public RegisterDepartmentUseCase(IDepartmentRepository repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
+        _unitOfWork = unitOfWork;
     }
 
-    public void Execute(RequestRegisterDepartmentJson request)
+    public async Task<ResponseRegisterDepartmentJson> Execute(RequestRegisterDepartmentJson request)
     {
-        ValidateAndThrownOnFailures(request);
+        request.Name = request.Name.RemoveExtraSpaces();
+
+        await ValidateAndThrownOnFailures(request);
+
         var department = new Domain.Entities.Department.Department(request.Name);
 
-        _repository.Add(department);
+        await _repository.Add(department);
+
+        await _unitOfWork.Commit();
+
+        return department.Adapt<ResponseRegisterDepartmentJson>();
     }
 
-    public void ValidateAndThrownOnFailures(RequestRegisterDepartmentJson request)
+    private async Task ValidateAndThrownOnFailures(RequestRegisterDepartmentJson request)
     {
         var validator = new RegisterDepartmentValidator();
         var result = validator.Validate(request);
+        var nameExist = await _repository.ExistActiveDepartmentName(request.Name);
+        if (nameExist) 
+        {
+            result.Errors.Add(new FluentValidation.Results.ValidationFailure("Name", ResourceMessagesExceptions.VALIDATION_NAME_ALREADY_EXISTS));
+        }
 
         if (result.IsValid == false)
         {

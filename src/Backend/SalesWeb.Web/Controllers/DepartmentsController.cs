@@ -23,16 +23,16 @@ public class DepartmentsController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(RequestRegisterDepartmentJson request)
+    public async Task<IActionResult> Create(RequestRegisterDepartmentJson request)
     {
-        _registerUseCase.Execute(request);
+        await _registerUseCase.Execute(request);
 
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var departments = _getAllUseCase.Execute();
+        var departments = await _getAllUseCase.Execute();
 
         return View(departments);
     }

@@ -120,6 +120,27 @@
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Error desconocido.</value>
   </data>
+  <data name="VALIDATION_BASESALARY_INVALID" xml:space="preserve">
+    <value>¡Ups! El salario base debe ser mayor que cero.</value>
+  </data>
+  <data name="VALIDATION_BIRTHDATE_INVALID" xml:space="preserve">
+    <value>¡Ups! La fecha de nacimiento no puede ser futura.</value>
+  </data>
+  <data name="VALIDATION_DEPARTMENT_REQUIRED" xml:space="preserve">
+    <value>¡Ups! El departamento es obligatorio.</value>
+  </data>
+  <data name="VALIDATION_EMAIL_ALREADY_EXISTS" xml:space="preserve">
+    <value>¡Ups! Este correo electrónico ya existe.</value>
+  </data>
+  <data name="VALIDATION_EMAIL_INVALID" xml:space="preserve">
+    <value>¡Ups! El correo electrónico no es válido.</value>
+  </data>
+  <data name="VALIDATION_EMAIL_REQUIRED" xml:space="preserve">
+    <value>¡Ups! El correo electrónico es obligatorio.</value>
+  </data>
+  <data name="VALIDATION_NAME_ALREADY_EXISTS" xml:space="preserve">
+    <value>¡Ups! Este departamento ya existe.</value>
+  </data>
   <data name="VALIDATION_NAME_REQUIRED" xml:space="preserve">
     <value>¡Ups! El nombre es obligatorio.</value>
   </data>

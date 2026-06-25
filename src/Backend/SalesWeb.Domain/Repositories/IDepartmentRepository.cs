@@ -4,7 +4,8 @@ namespace SalesWeb.Domain.Repositories;
 
 public interface IDepartmentRepository
 {
-    void Add(Department department);
+    Task<bool> ExistActiveDepartmentName(string name);
+    Task Add(Department department);
     Department? GetById(Guid id);
-    List<Department> GetAll();
+    Task <List<Department>> GetAll();
 }

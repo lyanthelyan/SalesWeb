@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SalesWeb.Infrastructure.Persistence.Context;
 
@@ -11,9 +12,11 @@ using SalesWeb.Infrastructure.Persistence.Context;
 namespace SalesWeb.Infrastructure.Migrations
 {
     [DbContext(typeof(SalesWebDbContext))]
-    partial class SalesWebDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260625180518_AddActiveToDepartment")]
+    partial class AddActiveToDepartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +49,6 @@ namespace SalesWeb.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<decimal>("BaseSalary")
                         .HasColumnType("decimal(10,2)");

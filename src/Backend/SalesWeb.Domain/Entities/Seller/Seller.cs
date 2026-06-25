@@ -2,7 +2,9 @@
 
 public class Seller
 {
+
     public Guid Id { get; private set; } = Guid.CreateVersion7();
+    public bool Active { get; private set; } = true;
     public string Name { get; private set; } = string.Empty;
     public string Email { get; private set; } = string.Empty;
     public DateTime BirthDate { get; private set; }

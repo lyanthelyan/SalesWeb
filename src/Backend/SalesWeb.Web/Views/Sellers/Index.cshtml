@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SalesWeb.Communication.Responses.ResponseSellerJson>
+@{
+    ViewData["Title"] = "Sellers";
+}
+<h2>Sellers</h2>
+<a asp-action="Create">Create New</a>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Birth Date</th>
+            <th>Base Salary</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var seller in Model)
+        {
+            <tr>
+                <td>@seller.Name</td>
+                <td>@seller.Email</td>
+                <td>@seller.BirthDate.ToShortDateString()</td>
+                <td>@seller.BaseSalary</td>
+                <td>@seller.DepartmentName</td>
+            </tr>
+        }
+    </tbody>
+</table>

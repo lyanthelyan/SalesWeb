@@ -7,28 +7,34 @@ namespace SalesWeb.Infrastructure.Persistence.Repositories;
 
 public class DepartmentRepository : IDepartmentRepository
 {
-    private readonly SalesWebDbContext _context;
-    public DepartmentRepository(SalesWebDbContext context)
+    private readonly SalesWebDbContext _dbContext;
+    public DepartmentRepository(SalesWebDbContext dbContext)
     {
-        _context = context;
+        _dbContext = dbContext;
     }
 
-    public void Add(Department department)
+    public async Task Add(Department department)
     {
-        _context.Departments.Add(department);
-        _context.SaveChanges();
+        await _dbContext.Departments.AddAsync(department);
+        
     }
 
     public Department? GetById(Guid id)
     {
-        return _context.Departments
+        return _dbContext.Departments
             .AsNoTracking()
             .FirstOrDefault(d => d.Id == id);
     }
-    public List<Department> GetAll()
+    public async Task <List<Department>> GetAll()
     {
-        return _context.Departments
+        return await _dbContext.Departments
             .AsNoTracking()
-            .ToList();
+            .ToListAsync();
+    }
+    public async Task<bool> ExistActiveDepartmentName(string name) 
+    {
+        return await _dbContext.Departments.AnyAsync(department =>
+       department.Active &&
+       department.Name.Equals(name));
     }
 }

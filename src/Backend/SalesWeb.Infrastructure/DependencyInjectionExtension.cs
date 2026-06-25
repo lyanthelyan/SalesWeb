@@ -24,6 +24,8 @@ public static class DependencyInjectionExtension
         });
 
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+        services.AddScoped<ISellerRepository, SellerRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }
