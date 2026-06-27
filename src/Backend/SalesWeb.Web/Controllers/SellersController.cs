@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SalesWeb.Application.UseCases.Department.GetAll;
 using SalesWeb.Application.UseCases.Seller.GetAll;
 using SalesWeb.Application.UseCases.Seller.Register;
 using SalesWeb.Communication.Requests;
+using SalesWeb.Exceptions.ExceptionBase;
 using SalesWeb.Web.Models;
 
 namespace SalesWeb.Web.Controllers;
@@ -40,9 +42,22 @@ public class SellersController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(SellerFormViewModel viewModel)
     {
-        await _registerUseCase.Execute(viewModel.Seller);
+        try
+        {
+            await _registerUseCase.Execute(viewModel.Seller);
+            return RedirectToAction(nameof(Index));
+        }
+        catch (ErrorOnValidationException ex)
+        {
+            viewModel.Departments = await _getAllDepartmentsUseCase.Execute();
+            ModelState.Clear();
+            foreach (var error in ex.GetErrorMessages())
+                ModelState.AddModelError(string.Empty, error);
 
-        return RedirectToAction(nameof(Index));
+            return View(viewModel);
+        }
+
+        
     }
 
     public async Task<IActionResult> Index()

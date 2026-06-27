@@ -21,11 +21,9 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
 
     public async Task<ResponseRegisterSellerJson> Execute(RequestRegisterSellerJson request)
     {
+        await ValidateAndThrownOnFailures(request);
         request.Name = request.Name.RemoveExtraSpaces();
         request.Email = request.Email.RemoveExtraSpaces();
-
-        await ValidateAndThrownOnFailures(request);
-
         var seller = new Domain.Entities.Seller.Seller(
             request.Name,
             request.Email,
