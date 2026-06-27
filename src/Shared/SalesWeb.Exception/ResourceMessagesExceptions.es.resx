@@ -144,4 +144,7 @@
   <data name="VALIDATION_NAME_REQUIRED" xml:space="preserve">
     <value>¡Ups! El nombre es obligatorio.</value>
   </data>
+  <data name="VALIDATION_SELLER_NOT_FOUND" xml:space="preserve">
+    <value>¡Ups! Vendedor no encontrado.</value>
+  </data>
 </root>

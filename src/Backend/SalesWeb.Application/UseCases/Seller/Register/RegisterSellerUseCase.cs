@@ -22,14 +22,16 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
     public async Task<ResponseRegisterSellerJson> Execute(RequestRegisterSellerJson request)
     {
         await ValidateAndThrownOnFailures(request);
-        request.Name = request.Name.RemoveExtraSpaces();
-        request.Email = request.Email.RemoveExtraSpaces();
+        
+        request.Name = request.Name!.RemoveExtraSpaces();
+        request.Email = request.Email!.RemoveExtraSpaces();
+        
         var seller = new Domain.Entities.Seller.Seller(
-            request.Name,
-            request.Email,
-            request.BirthDate,
-            request.BaseSalary,
-            request.DepartmentId);
+            request.Name!,
+            request.Email!,
+            request.BirthDate!.Value,
+            request.BaseSalary!.Value,
+            request.DepartmentId!.Value);
 
         await _repository.Add(seller);
         await _unitOfWork.Commit();

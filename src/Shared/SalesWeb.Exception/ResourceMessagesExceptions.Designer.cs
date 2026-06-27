@@ -140,5 +140,13 @@ namespace SalesWeb.Exceptions {
                 return ResourceManager.GetString("VALIDATION_NAME_REQUIRED", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! Seller not found.
+        /// </summary>
+        public static string VALIDATION_SELLER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("VALIDATION_SELLER_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }

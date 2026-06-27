@@ -36,4 +36,14 @@ public class SellerRepository : ISellerRepository
             seller.Active &&
             seller.Email.Equals(email));
     }
+    public async Task Delete(Guid id)
+    {
+        var seller = await _dbContext.Sellers.FirstOrDefaultAsync(seller => seller.Id == id);
+
+        if (seller == null)
+            return;
+        
+        _dbContext.Sellers.Remove(seller);
+    }
+
 }
