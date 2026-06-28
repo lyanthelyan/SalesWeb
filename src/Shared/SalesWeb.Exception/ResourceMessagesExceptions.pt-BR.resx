@@ -148,4 +148,7 @@
   <data name="VALIDATION_SELLER_NOT_FOUND" xml:space="preserve">
     <value>Ops! Vendedor não encontrado.</value>
   </data>
+  <data name="VALIDATION_DEPARTMENT_NOT_FOUND" xml:space="preserve">
+    <value>Ops! Departmento não encontrado.</value>
+  </data>
 </root>

@@ -147,4 +147,7 @@
   <data name="VALIDATION_SELLER_NOT_FOUND" xml:space="preserve">
     <value>Oops! Seller not found.</value>
   </data>
+  <data name="VALIDATION_DEPARTMENT_NOT_FOUND" xml:space="preserve">
+    <value>Oops! Department not found.</value>
+  </data>
 </root>

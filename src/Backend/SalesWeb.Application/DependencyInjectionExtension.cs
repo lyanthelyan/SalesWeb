@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SalesWeb.Application.UseCases.Department.Delete;
 using SalesWeb.Application.UseCases.Department.GetAll;
+using SalesWeb.Application.UseCases.Department.GetById;
 using SalesWeb.Application.UseCases.Department.Register;
 using SalesWeb.Application.UseCases.Seller.Delete;
 using SalesWeb.Application.UseCases.Seller.GetAll;
@@ -18,6 +20,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAllSellerUseCase, GetAllSellerUseCase>();
         services.AddScoped<IDeleteSellerUseCase, DeleteSellerUseCase>();
         services.AddScoped<IGetSellerByIdUseCase, GetSellerByIdUseCase>();
+        services.AddScoped<IDeleteDepartmentUseCase, DeleteDepartmentUseCase>();
+        services.AddScoped<IGetDepartmentByIdUseCase, GetDepartmentByIdUseCase>();
 
         return services;
     }

@@ -19,11 +19,11 @@ public class DepartmentRepository : IDepartmentRepository
         
     }
 
-    public Department? GetById(Guid id)
+    public async Task<Department?> GetById(Guid id)
     {
-        return _dbContext.Departments
+        return await _dbContext.Departments
             .AsNoTracking()
-            .FirstOrDefault(d => d.Id == id);
+            .FirstOrDefaultAsync(d => d.Id == id);
     }
     public async Task <List<Department>> GetAll()
     {
@@ -34,7 +34,14 @@ public class DepartmentRepository : IDepartmentRepository
     public async Task<bool> ExistActiveDepartmentName(string name) 
     {
         return await _dbContext.Departments.AnyAsync(department =>
-       department.Active &&
-       department.Name.Equals(name));
+        department.Active &&
+        department.Name.Equals(name));
+    }
+    public async Task Delete(Guid id)
+    {
+        var department = await _dbContext.Departments.FirstOrDefaultAsync(department => department.Id == id);
+        if (department is null)
+            return;
+        _dbContext.Departments.Remove(department);
     }
 }

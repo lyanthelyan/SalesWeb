@@ -6,6 +6,7 @@ public interface IDepartmentRepository
 {
     Task<bool> ExistActiveDepartmentName(string name);
     Task Add(Department department);
-    Department? GetById(Guid id);
+    Task<Department?> GetById(Guid id);
     Task <List<Department>> GetAll();
+    Task Delete(Guid id);
 }

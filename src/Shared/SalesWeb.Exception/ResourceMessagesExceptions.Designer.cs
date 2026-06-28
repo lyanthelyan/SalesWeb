@@ -148,5 +148,13 @@ namespace SalesWeb.Exceptions {
                 return ResourceManager.GetString("VALIDATION_SELLER_NOT_FOUND", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! Department not found.
+        /// </summary>
+        public static string VALIDATION_DEPARTMENT_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("VALIDATION_DEPARTMENT_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }

@@ -13,14 +13,22 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Actions</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var department in Model)
         {
             <tr>
-                <td>@item.Name</td>
+                <td>@department.Name</td>
+
+                <td>
+                    <a asp-action="Delete"
+                       asp-route-id="@department.Id">
+                        Delete
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
