@@ -43,7 +43,7 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
     {
         var validator = new RegisterSellerValidator();
         var result = validator.Validate(request);
-        var emailExist = await _repository.ExistActiveSellerEmail(request.Email);
+        var emailExist = await _repository.ExistActiveSellerEmail(request.Email!);
         if (emailExist)
         {
             result.Errors.Add(new FluentValidation.Results.ValidationFailure("Email", ResourceMessagesExceptions.VALIDATION_EMAIL_ALREADY_EXISTS));

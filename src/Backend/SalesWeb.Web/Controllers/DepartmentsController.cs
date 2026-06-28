@@ -16,6 +16,7 @@ public class DepartmentsController : Controller
         _getAllUseCase = getAllUseCase;
     }
 
+    [HttpGet]
     public IActionResult Create()
     {
         return View();

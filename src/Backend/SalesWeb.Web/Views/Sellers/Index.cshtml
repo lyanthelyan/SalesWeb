@@ -5,26 +5,29 @@
 <h2>Sellers</h2>
 <a asp-action="Create">Create New</a>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Birth Date</th>
-            <th>Base Salary</th>
-            <th>Department</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var seller in Model)
-        {
-            <tr>
-                <td>@seller.Name</td>
-                <td>@seller.Email</td>
-                <td>@seller.BirthDate.ToShortDateString()</td>
-                <td>@seller.BaseSalary</td>
-                <td>@seller.DepartmentName</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Birth Date</th>
+        <th>Base Salary</th>
+        <th>Department</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+
+<tbody>
+@foreach (var seller in Model)
+{
+    <tr>
+        <td>@seller.Name</td>
+        <td>@seller.Email</td>
+        <td>@seller.BirthDate.ToShortDateString()</td>
+        <td>@seller.BaseSalary</td>
+        <td>@seller.DepartmentName</td>
+        <td>
+            <a asp-action="Delete" asp-route-id="@seller.Id">Delete</a>
+        </td>
+    </tr>
+}
+</tbody>

@@ -40,7 +40,7 @@ public class SellerRepository : ISellerRepository
     {
         var seller = await _dbContext.Sellers.FirstOrDefaultAsync(seller => seller.Id == id);
 
-        if (seller == null)
+        if (seller is null)
             return;
         
         _dbContext.Sellers.Remove(seller);

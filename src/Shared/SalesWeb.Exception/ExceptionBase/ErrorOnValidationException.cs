@@ -4,7 +4,7 @@ public class ErrorOnValidationException : SalesWebException
 {
     private readonly List<string> _errors;
 
-    public ErrorOnValidationException(List<string> errorMessages)
+       public ErrorOnValidationException(List<string> errorMessages) : base(string.Empty)
     {
         _errors = errorMessages;
     }

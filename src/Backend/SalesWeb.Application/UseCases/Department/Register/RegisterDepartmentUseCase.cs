@@ -20,9 +20,9 @@ public class RegisterDepartmentUseCase: IRegisterDepartmentUseCase
 
     public async Task<ResponseRegisterDepartmentJson> Execute(RequestRegisterDepartmentJson request)
     {
-        request.Name = request.Name.RemoveExtraSpaces();
-
+        
         await ValidateAndThrownOnFailures(request);
+        request.Name = request.Name.RemoveExtraSpaces();
 
         var department = new Domain.Entities.Department.Department(request.Name);
 

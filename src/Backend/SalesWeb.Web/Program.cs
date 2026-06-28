@@ -29,7 +29,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
+//builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
 
 var app = builder.Build();
 await DatabaseMigration.MigrateDatabase(app.Services);
