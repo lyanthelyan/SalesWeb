@@ -1,4 +1,4 @@
-﻿using SalesWeb.Communication.Responses;
+﻿using SalesWeb.Communication.Responses.DepartmentResponses;
 
 namespace SalesWeb.Application.UseCases.Department.GetAll;
 

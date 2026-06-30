@@ -1,5 +1,5 @@
-﻿using SalesWeb.Communication.Requests;
-using SalesWeb.Communication.Responses;
+﻿using SalesWeb.Communication.Requests.SellerRequests.Register;
+using SalesWeb.Communication.Responses.SellerResponses.Register;
 using System;
 using System.Collections.Generic;
 using System.Text;

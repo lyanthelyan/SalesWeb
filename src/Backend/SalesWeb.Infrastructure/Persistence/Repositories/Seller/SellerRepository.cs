@@ -46,4 +46,12 @@ public class SellerRepository : ISellerRepository
         _dbContext.Sellers.Remove(seller);
     }
 
+    public async Task<bool> ExistActiveSellerEmailExceptId(string email, Guid id)
+    {
+        return await _dbContext.Sellers
+            .AnyAsync(seller =>
+            seller.Active &&
+            seller.Id != id &&
+            seller.Email.Equals(email));
+    }
 }

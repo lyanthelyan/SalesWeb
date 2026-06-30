@@ -5,6 +5,7 @@ using SalesWeb.Application.UseCases.Seller.Delete;
 using SalesWeb.Application.UseCases.Seller.GetAll;
 using SalesWeb.Application.UseCases.Seller.GetById;
 using SalesWeb.Application.UseCases.Seller.Register;
+using SalesWeb.Application.UseCases.Seller.Update;
 using SalesWeb.Communication.Requests;
 using SalesWeb.Exceptions.ExceptionBase;
 using SalesWeb.Web.Models;
@@ -19,19 +20,22 @@ public class SellersController : Controller
     private readonly IGetAllSellerUseCase _getAllUseCase;
     private readonly IGetAllDepartmentUseCase _getAllDepartmentsUseCase;
     private readonly IGetSellerByIdUseCase _getSellerByIdUseCase;
+    private readonly IUpdateSellerUseCase _updateSellerUseCase;
 
     public SellersController(
         IRegisterSellerUseCase registerSellerUseCase,
         IGetAllSellerUseCase getAllSellerUseCase,
         IGetAllDepartmentUseCase getAllDepartmentsUseCase,
         IDeleteSellerUseCase deleteUseCase,
-        IGetSellerByIdUseCase getSellerByIdUseCase)
+        IGetSellerByIdUseCase getSellerByIdUseCase,
+        IUpdateSellerUseCase updateSellerUseCase)
     {
         _registerUseCase = registerSellerUseCase;
         _getAllUseCase = getAllSellerUseCase;
         _getAllDepartmentsUseCase = getAllDepartmentsUseCase;
         _deleteUseCase = deleteUseCase;
         _getSellerByIdUseCase = getSellerByIdUseCase;
+        _updateSellerUseCase = updateSellerUseCase;
     }
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -56,6 +60,35 @@ public class SellersController : Controller
     public async Task<IActionResult> Delete(Guid id)
     {
         var seller = await _getSellerByIdUseCase.Execute(id);
+        return View(seller);
+    }
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid id)
+    {
+        var seller = await _getSellerByIdUseCase.Execute(id);
+        var departments = await _getAllDepartmentsUseCase.Execute();
+
+        var viewModel = new UpdateSellerFormViewModel()
+        {
+            Seller = new RequestUpdateSellerJson
+            {
+                Id = seller.Id,
+                Name = seller.Name,
+                Email = seller.Email,
+                BirthDate = seller.BirthDate,
+                BaseSalary = seller.BaseSalary,
+                DepartmentId = seller.DepartmentId
+            },
+            Departments = departments
+        };
+
+        return View(viewModel);
+    }
+    [HttpGet]
+    public async Task<IActionResult> Details(Guid id)
+    {
+        var seller = await _getSellerByIdUseCase.Execute(id);
+
         return View(seller);
     }
 
@@ -85,6 +118,25 @@ public class SellersController : Controller
         await _deleteUseCase.Execute(id);
         return RedirectToAction(nameof(Index));
     }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(Guid id,UpdateSellerFormViewModel viewModel)
+    {
+        try
+        {
+            await _updateSellerUseCase.Execute(id, viewModel.Seller);
+            return RedirectToAction(nameof(Index));
+        }
+        catch (ErrorOnValidationException ex)
+        {
+            viewModel.Departments = await _getAllDepartmentsUseCase.Execute();
+            ModelState.Clear();
+            foreach (var error in ex.GetErrorMessages())
+                ModelState.AddModelError(string.Empty, error);
 
-    
+            return View(viewModel);
+        }
+    }
+
+
 }

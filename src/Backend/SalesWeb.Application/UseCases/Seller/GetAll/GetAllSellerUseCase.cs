@@ -1,5 +1,5 @@
 ﻿using Mapster;
-using SalesWeb.Communication.Responses;
+using SalesWeb.Communication.Responses.SellerResponses;
 using SalesWeb.Domain.Repositories;
 
 namespace SalesWeb.Application.UseCases.Seller.GetAll;

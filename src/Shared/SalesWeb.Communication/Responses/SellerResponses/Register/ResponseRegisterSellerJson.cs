@@ -1,4 +1,4 @@
-﻿namespace SalesWeb.Communication.Responses;
+﻿namespace SalesWeb.Communication.Responses.SellerResponses.Register;
 
 public class ResponseRegisterSellerJson
 {

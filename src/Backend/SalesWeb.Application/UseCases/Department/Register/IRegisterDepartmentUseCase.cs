@@ -1,5 +1,5 @@
-﻿using SalesWeb.Communication.Requests;
-using SalesWeb.Communication.Responses;
+﻿using SalesWeb.Communication.Requests.DepartmentRequests.Register;
+using SalesWeb.Communication.Responses.DepartmentResponses.Register;
 
 namespace SalesWeb.Application.UseCases.Department.Register;
 

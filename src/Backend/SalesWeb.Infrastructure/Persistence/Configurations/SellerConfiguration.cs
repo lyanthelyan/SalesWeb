@@ -26,7 +26,8 @@ public class SellerConfiguration : IEntityTypeConfiguration<Seller>
 
 
         builder.HasOne(seller => seller.Department)
-            .WithMany()
+            .WithMany(department => department.Sellers)
             .HasForeignKey(seller => seller.DepartmentId);
+            
     }
 }

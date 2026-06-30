@@ -1,6 +1,6 @@
 ﻿using Mapster;
-using SalesWeb.Communication.Requests;
-using SalesWeb.Communication.Responses;
+using SalesWeb.Communication.Requests.DepartmentRequests.Register;
+using SalesWeb.Communication.Responses.DepartmentResponses.Register;
 using SalesWeb.Domain.Extensions;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Exceptions;

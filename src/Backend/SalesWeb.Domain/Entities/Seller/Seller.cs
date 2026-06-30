@@ -23,4 +23,13 @@ public class Seller
         DepartmentId = departmentId;
         
     }
+    public void Update(string name, string email, DateTime birthDate, decimal baseSalary, Guid departmentId) 
+    {
+        SellerValidate.ValidateSeller(name, email, birthDate, baseSalary, departmentId);
+        Name=name;
+        Email = email;
+        BirthDate=birthDate;
+        BaseSalary=baseSalary;
+        DepartmentId=departmentId;
+    }    
 }

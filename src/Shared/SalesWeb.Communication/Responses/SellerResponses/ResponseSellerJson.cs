@@ -1,4 +1,4 @@
-﻿namespace SalesWeb.Communication.Responses;
+﻿namespace SalesWeb.Communication.Responses.SellerResponses;
 
 public class ResponseSellerJson
 {
@@ -8,4 +8,5 @@ public class ResponseSellerJson
     public DateTime BirthDate { get; set; }
     public decimal BaseSalary { get; set; }
     public string DepartmentName { get; set; } = string.Empty;
+    public Guid DepartmentId { get; set; }
 }

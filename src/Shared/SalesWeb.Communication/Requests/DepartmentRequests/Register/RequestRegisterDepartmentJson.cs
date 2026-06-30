@@ -1,4 +1,4 @@
-﻿namespace SalesWeb.Communication.Requests;
+﻿namespace SalesWeb.Communication.Requests.DepartmentRequests.Register;
 
 public class RequestRegisterDepartmentJson
 {

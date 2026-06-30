@@ -1,6 +1,6 @@
 ﻿using Mapster;
-using SalesWeb.Communication.Requests;
-using SalesWeb.Communication.Responses;
+using SalesWeb.Communication.Requests.SellerRequests.Register;
+using SalesWeb.Communication.Responses.SellerResponses.Register;
 using SalesWeb.Domain.Extensions;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Exceptions;
@@ -21,7 +21,7 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
 
     public async Task<ResponseRegisterSellerJson> Execute(RequestRegisterSellerJson request)
     {
-        await ValidateAndThrownOnFailures(request);
+        await ValidateAndThrowOnFailures(request);
         
         request.Name = request.Name!.RemoveExtraSpaces();
         request.Email = request.Email!.RemoveExtraSpaces();
@@ -39,7 +39,7 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
         return seller.Adapt<ResponseRegisterSellerJson>();
     }
 
-    private async Task ValidateAndThrownOnFailures(RequestRegisterSellerJson request)
+    private async Task ValidateAndThrowOnFailures(RequestRegisterSellerJson request)
     {
         var validator = new RegisterSellerValidator();
         var result = validator.Validate(request);

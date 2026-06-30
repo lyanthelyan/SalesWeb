@@ -1,33 +1,56 @@
-﻿@model IEnumerable<SalesWeb.Communication.Responses.ResponseSellerJson>
+﻿@model IEnumerable<SalesWeb.Communication.Responses.SellerResponses.ResponseSellerJson>
+
 @{
     ViewData["Title"] = "Sellers";
 }
+
 <h2>Sellers</h2>
-<a asp-action="Create">Create New</a>
 
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Birth Date</th>
-        <th>Base Salary</th>
-        <th>Department</th>
-        <th>Actions</th>
-    </tr>
-</thead>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
 
-<tbody>
-@foreach (var seller in Model)
-{
-    <tr>
-        <td>@seller.Name</td>
-        <td>@seller.Email</td>
-        <td>@seller.BirthDate.ToShortDateString()</td>
-        <td>@seller.BaseSalary</td>
-        <td>@seller.DepartmentName</td>
-        <td>
-            <a asp-action="Delete" asp-route-id="@seller.Id">Delete</a>
-        </td>
-    </tr>
-}
-</tbody>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Birth Date</th>
+            <th>Base Salary</th>
+            <th>Department</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var seller in Model)
+        {
+            <tr>
+                <td>@seller.Name</td>
+                <td>@seller.Email</td>
+                <td>@seller.BirthDate.ToString("dd/MM/yyyy")</td>
+                <td>@seller.BaseSalary.ToString("F2")</td>
+                <td>@seller.DepartmentName</td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@seller.Id"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@seller.Id"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@seller.Id"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -79,12 +79,17 @@ namespace SalesWeb.Infrastructure.Migrations
             modelBuilder.Entity("SalesWeb.Domain.Entities.Seller.Seller", b =>
                 {
                     b.HasOne("SalesWeb.Domain.Entities.Department.Department", "Department")
-                        .WithMany()
+                        .WithMany("Sellers")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("SalesWeb.Domain.Entities.Department.Department", b =>
+                {
+                    b.Navigation("Sellers");
                 });
 #pragma warning restore 612, 618
         }

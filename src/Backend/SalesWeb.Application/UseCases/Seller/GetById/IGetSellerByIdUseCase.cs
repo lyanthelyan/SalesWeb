@@ -1,4 +1,4 @@
-using SalesWeb.Communication.Responses;
+using SalesWeb.Communication.Responses.SellerResponses;
 
 namespace SalesWeb.Application.UseCases.Seller.GetById;
 

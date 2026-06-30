@@ -8,5 +8,6 @@ public interface ISellerRepository
     Task<List<Seller>> GetAll();
     Task<Seller?> GetById(Guid id);
     Task<bool> ExistActiveSellerEmail(string email);
-    Task Delete(Guid Id);
+    Task<bool> ExistActiveSellerEmailExceptId(string email, Guid id);
+    Task Delete(Guid id);
 }

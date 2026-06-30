@@ -23,7 +23,15 @@ public class DepartmentRepository : IDepartmentRepository
     {
         return await _dbContext.Departments
             .AsNoTracking()
-            .FirstOrDefaultAsync(d => d.Id == id);
+            .FirstOrDefaultAsync(department => department.Id == id);
+    }
+
+    public async Task<Department?> GetDetailsById(Guid id)
+    {
+        return await _dbContext.Departments
+            .AsNoTracking()
+            .Include(department => department.Sellers)
+            .FirstOrDefaultAsync(department => department.Id == id);
     }
     public async Task <List<Department>> GetAll()
     {
@@ -35,6 +43,13 @@ public class DepartmentRepository : IDepartmentRepository
     {
         return await _dbContext.Departments.AnyAsync(department =>
         department.Active &&
+        department.Name.Equals(name));
+    }
+    public async Task<bool> ExistActiveDepartmentNameExceptId(string name, Guid id)
+    {
+        return await _dbContext.Departments.AnyAsync(department =>
+        department.Active &&
+        department.Id != id &&
         department.Name.Equals(name));
     }
     public async Task Delete(Guid id)

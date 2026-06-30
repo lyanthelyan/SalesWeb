@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SalesWeb.Communication.Requests;
+using SalesWeb.Communication.Requests.DepartmentRequests.Register;
 using SalesWeb.Exceptions;
 
 

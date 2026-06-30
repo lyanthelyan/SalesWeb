@@ -1,6 +1,6 @@
 using Mapster;
 using SalesWeb.Application.UseCases.Department.GetById;
-using SalesWeb.Communication.Responses;
+using SalesWeb.Communication.Responses.DepartmentResponses;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Exceptions;
 

@@ -18,4 +18,8 @@
     <ProjectReference Include="..\SalesWeb.Domain\SalesWeb.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Seller\Details\" />
+  </ItemGroup>
+
 </Project>
