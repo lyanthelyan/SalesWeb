@@ -1,6 +1,4 @@
-﻿using Mapster;
-using SalesWeb.Communication.Requests.DepartmentRequests.Register;
-using SalesWeb.Communication.Responses.DepartmentResponses.Register;
+﻿using SalesWeb.Communication.Requests.DepartmentRequests.Register;
 using SalesWeb.Domain.Extensions;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Exceptions;
@@ -18,7 +16,7 @@ public class RegisterDepartmentUseCase: IRegisterDepartmentUseCase
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<ResponseRegisterDepartmentJson> Execute(RequestRegisterDepartmentJson request)
+    public async Task Execute(RequestRegisterDepartmentJson request)
     {
         
         await ValidateAndThrownOnFailures(request);
@@ -30,7 +28,6 @@ public class RegisterDepartmentUseCase: IRegisterDepartmentUseCase
 
         await _unitOfWork.Commit();
 
-        return department.Adapt<ResponseRegisterDepartmentJson>();
     }
 
     private async Task ValidateAndThrownOnFailures(RequestRegisterDepartmentJson request)

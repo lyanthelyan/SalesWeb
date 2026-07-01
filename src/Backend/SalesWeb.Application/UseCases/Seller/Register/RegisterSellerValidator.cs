@@ -20,11 +20,15 @@ public class RegisterSellerValidator : AbstractValidator<RequestRegisterSellerJs
 
         RuleFor(seller => seller.BirthDate)
             .LessThan(DateTime.UtcNow)
-            .WithMessage(ResourceMessagesExceptions.VALIDATION_BIRTHDATE_INVALID);
+            .WithMessage(ResourceMessagesExceptions.VALIDATION_BIRTHDATE_INVALID)
+            .NotEmpty()
+            .WithMessage(ResourceMessagesExceptions.VALIDATION_BIRTHDATE_REQUIRED);
 
         RuleFor(seller => seller.BaseSalary)
             .GreaterThan(0)
-            .WithMessage(ResourceMessagesExceptions.VALIDATION_BASESALARY_INVALID);
+            .WithMessage(ResourceMessagesExceptions.VALIDATION_BASESALARY_INVALID)
+            .NotEmpty()
+            .WithMessage(ResourceMessagesExceptions.VALIDATION_BASESALARY_REQUIRED);
 
         RuleFor(seller => seller.DepartmentId)
             .NotEmpty()

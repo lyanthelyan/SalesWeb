@@ -1,7 +1,6 @@
-using System;
-using System.Threading.Tasks;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Exceptions;
+using SalesWeb.Exceptions.ExceptionBase;
 
 namespace SalesWeb.Application.UseCases.Department.Delete
 {
@@ -19,16 +18,21 @@ namespace SalesWeb.Application.UseCases.Department.Delete
 
         public async Task Execute(Guid id)
         {
-            await ValidateDepartmentExists(id);
+            await ValidateDepartmentCanBeDeleted(id);         
             await _repository.Delete(id);
             await _unitOfWork.Commit();
         }
-        private async Task ValidateDepartmentExists(Guid id)
+        private async Task ValidateDepartmentCanBeDeleted(Guid id)
         {
-            var departmentId = await _repository.GetById(id);
-        
-            if (departmentId is null)
+            var department = await _repository.GetById(id);
+            var departmentHasSellers = await _repository.ExistSellerWithDepartmentId(id);
+            if (department is null)
                 throw new NotFoundException(ResourceMessagesExceptions.VALIDATION_DEPARTMENT_NOT_FOUND);
+            if (departmentHasSellers) 
+            {
+                throw new ErrorOnValidationException([ResourceMessagesExceptions.VALIDATION_DETELE_DEPARTMENT]);
+            }
+                
         }
     }
 }

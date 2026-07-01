@@ -1,6 +1,4 @@
-﻿using Mapster;
-using SalesWeb.Communication.Requests.SellerRequests.Register;
-using SalesWeb.Communication.Responses.SellerResponses.Register;
+﻿using SalesWeb.Communication.Requests.SellerRequests.Register;
 using SalesWeb.Domain.Extensions;
 using SalesWeb.Domain.Repositories;
 using SalesWeb.Exceptions;
@@ -19,7 +17,7 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
         _repository = repository;
     }
 
-    public async Task<ResponseRegisterSellerJson> Execute(RequestRegisterSellerJson request)
+    public async Task Execute(RequestRegisterSellerJson request)
     {
         await ValidateAndThrowOnFailures(request);
         
@@ -36,7 +34,6 @@ public class RegisterSellerUseCase : IRegisterSellerUseCase
         await _repository.Add(seller);
         await _unitOfWork.Commit();
 
-        return seller.Adapt<ResponseRegisterSellerJson>();
     }
 
     private async Task ValidateAndThrowOnFailures(RequestRegisterSellerJson request)
